@@ -1,21 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <h1 class="test">test h1 heading</h1>
-  <HeadingTwo />
-  <ClassComponent />
+  <HelloWorld />
+  <!-- <h1>{{ message }}</h1> -->
 </template>
 
 <script>
-import ClassComponent from './components/ClassComponent.vue';
-import HeadingTwo from './components/HeadingTwo.vue';
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      message: "message Prop =D",
+    };
+  },
   components: {
-    HeadingTwo,
-    ClassComponent
-  }
-}
+    HelloWorld,
+  },
+};
 </script>
 
 <style>
