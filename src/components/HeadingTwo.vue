@@ -1,8 +1,3 @@
-<template>
-  <h2 class="test">Heading 2</h2>
-  <h3 v-bind:id="hatri">Heading 3</h3>
-</template>
-
 <script>
 export default {
   data() {

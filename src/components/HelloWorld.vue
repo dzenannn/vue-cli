@@ -17,19 +17,73 @@
     <!-- <input v-model="text" type="text" />
     <p>{{ text }}</p> -->
 
-    <div v-html="myContent"></div>
+    <!-- <div v-html="myContent"></div>
+    <h1 v-text="myText"></h1> -->
+    <!-- //? Value u v-once ostaje nepromenjen (renderuje se once)-->
+    <!-- <h1 v-once>{{ myName }}</h1>
+    <h1>{{ myName }}</h1>
+    <button @click="myName = 'no name'">Change name</button>
+    <p>{{ msg }}</p> -->
+    <!-- <h1 v-show="isShowing">Welcome!</h1>
+    <button @click="() => (isShowing = !isShowing)">
+      {{ isShowing ? "hide" : "show" }}
+    </button> -->
+    <!-- <div>
+      <h1 v-if="location === 'A'">A</h1>
+      <h1 v-else-if="location === 'B'">B</h1>
+      <h1 v-else>HOME</h1>
+      <button @click="location = !location">Click</button>
+    </div> -->
+
+    <!-- <div v-for="(letter, index) in alphabet" :key="letter">
+      {{ index + 1 }}. je {{ letter }}
+    </div> -->
+
+    <!-- <div>
+      <input type="text" v-model="text" />
+      <br />
+      {{ text }}
+    </div> -->
+
+    <!-- <div>
+      <button v-on:click="onClick">Click me</button>
+      <button @click="onClick">Click me</button>
+    </div> -->
+
+    <!-- <div>
+      <span v-pre>{{ myName }}</span
+      ><br />
+      <span>{{ myName }}</span>
+    </div> -->
+
+    <!-- <div v-html="myHTMLContent"></div> -->
   </div>
 </template>
 
 <script>
 export default {
   name: "HelloWorld",
-  methods: {},
+  methods: {
+    onClick() {
+      console.log("Hello");
+    },
+  },
   data() {
     return {
-      myContent:
-        "<b style='color:white;text-shadow:1px 1px 10px black'>Hello my content</b>",
+      // myName: "Dzenan",
+      // myText: "hello this is myText variable",
+      // myContent: `<b style='color:white'>Hello my content</b>`,
+      // isShowing: true,
+      // location: "",
+      // alphabet: ["A", "B", "C"],
+      // text: "",
+      myName: "Dzenan",
     };
+  },
+  computed: {
+    myHTMLContent() {
+      return `<h2>My name is ${this.myName}.</h2>`;
+    },
   },
   props: {
     msg: String,
