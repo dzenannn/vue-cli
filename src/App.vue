@@ -2,10 +2,12 @@
   <HelloWorld msg="prop msg iz HelloWorld-a u App" />
   <h1 v-if="message.length < 5">{{ message }}</h1>
   <Rendering />
+  <ObjectRendering />
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import ObjectRendering from "./components/ObjectRendering.vue";
 import Rendering from "./components/Rendering.vue";
 
 export default {
@@ -18,6 +20,7 @@ export default {
   components: {
     HelloWorld,
     Rendering,
+    ObjectRendering,
   },
 };
 </script>

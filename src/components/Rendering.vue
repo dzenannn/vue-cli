@@ -1,13 +1,9 @@
 <template>
   <div>
     <h1>Rendering Component</h1>
-    <div
-      @click="myData(name)"
-      v-for="{ name, id, isActive } in myList"
-      :key="id"
-    >
-      <h1 v-if="isActive" :class="esnaf">
-        {{ name }}
+    <div v-for="(item, index) in myList" :key="index">
+      <h1 @click="removeData(index)" :class="esnaf">
+        {{ item.name }}
       </h1>
     </div>
   </div>
@@ -18,6 +14,9 @@ export default {
   methods: {
     myData(data) {
       console.log(data);
+    },
+    removeData(index) {
+      this.myList.splice(index, 1);
     },
   },
   data() {
