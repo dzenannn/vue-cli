@@ -76,6 +76,7 @@
     <div>
       <h1 :style="{ color, fontWeight }">Vue js</h1>
       <h3 :style="styleObject">Hello</h3>
+      <button @click="printInfo">Print Info In Console</button>
     </div>
   </div>
 </template>
@@ -83,32 +84,38 @@
 <script>
 export default {
   name: "HelloWorld",
-  methods: {},
+  methods: {
+    // printInfo() {
+    //   console.log(
+    //     `${this.color}\n${this.styleObject.color}\n${this.nekaKlasa}`
+    //   );
+    // },
+  },
   data() {
     return {
-      color: "turquoise",
-      fontWeight: "800",
-      styleObject: {
-        color: "tomato",
-        backgroundColor: "blue",
-      },
-      a: "A",
-      b: "B",
-      isActive: true,
-      nekaKlasa: "color-red back active klase klase klase klase", // skladište se sve klase iz <styles> unutar ove varijable koju bindamo u neki element :class="nekaKlasa" da bi element dobio sve te skladištene stilove.
-      myName: "Dzenan",
-      info: {
-        name: "Dzenan",
-        age: 20,
-        birthYear: 2004,
-        playingFootball: true,
-      },
+      // color: "turquoise",
+      // fontWeight: "800",
+      // styleObject: {
+      //   color: "tomato",
+      //   backgroundColor: "blue",
+      // },
+      // a: "A",
+      // b: "B",
+      // isActive: true,
+      // nekaKlasa: "color-red back active klase klase klase klase", // skladište se sve klase iz <styles> unutar ove varijable koju bindamo u neki element :class="nekaKlasa" da bi element dobio sve te skladištene stilove.
+      // myName: "Dzenan",
+      // info: {
+      //   name: "Dzenan",
+      //   age: 20,
+      //   birthYear: 2004,
+      //   playingFootball: true,
+      // },
     };
   },
   computed: {
-    myHTMLContent() {
-      return `<h2>My name is ${this.myName}.</h2>`;
-    },
+    // myHTMLContent() {
+    //   return `<h2>My name is ${this.myName}.</h2>`;
+    // },
   },
   props: {
     msg: String,
@@ -117,7 +124,7 @@ export default {
 </script>
 <!-- Dodat "scoped" atribut da bi se ogranicio CSS SAMO na ovu komponentu. -->
 <style scoped>
-.back {
+/* .back {
   background-color: aqua;
 }
 
@@ -139,5 +146,5 @@ export default {
 
 .B {
   background-color: black;
-}
+} */
 </style>

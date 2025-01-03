@@ -1,20 +1,23 @@
 <template>
   <HelloWorld msg="prop msg iz HelloWorld-a u App" />
   <h1 v-if="message.length < 5">{{ message }}</h1>
+  <Rendering />
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import Rendering from "./components/Rendering.vue";
 
 export default {
   name: "App",
   data() {
     return {
-      message: "erasdasd",
+      message: "123",
     };
   },
   components: {
     HelloWorld,
+    Rendering,
   },
 };
 </script>
