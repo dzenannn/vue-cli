@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>Rendering Component</h1>
-    <div v-for="{ name, id, isActive } in myList" :key="id">
+    <div
+      @click="myData(name)"
+      v-for="{ name, id, isActive } in myList"
+      :key="id"
+    >
       <h1 v-if="isActive" :class="esnaf">
         {{ name }}
       </h1>
@@ -11,25 +15,30 @@
 <script>
 export default {
   name: "Rendering",
-  methods: {},
+  methods: {
+    myData(data) {
+      console.log(data);
+    },
+  },
   data() {
     return {
+      showUsers: false,
       esnaf: "header",
       myList: [
         {
           id: 1,
           name: "John",
-          isActive: true,
+          isActive: false,
         },
         {
           id: 2,
           name: "Dzeno",
-          isActive: false,
+          isActive: true,
         },
         {
           id: 3,
           name: "Jack",
-          isActive: true,
+          isActive: false,
         },
         {
           id: 4,
