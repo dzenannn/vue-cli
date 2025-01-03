@@ -1,11 +1,9 @@
 <template>
   <HelloWorld msg="prop msg iz HelloWorld-a u App" />
   <h1 v-if="message.length < 5">{{ message }}</h1>
-  <HeadingTwo />
 </template>
 
 <script>
-import HeadingTwo from "./components/HeadingTwo.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
@@ -17,7 +15,6 @@ export default {
   },
   components: {
     HelloWorld,
-    HeadingTwo,
   },
 };
 </script>

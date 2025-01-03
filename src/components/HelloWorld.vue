@@ -69,8 +69,13 @@
       <h1 :class="{ active: isActive, back: isActive }">hello</h1>
     </div> -->
 
-    <div>
+    <!-- <div>
       <h1 :class="[a, b]">Hello</h1>
+    </div> -->
+
+    <div>
+      <h1 :style="{ color, fontWeight }">Vue js</h1>
+      <h3 :style="styleObject">Hello</h3>
     </div>
   </div>
 </template>
@@ -81,6 +86,12 @@ export default {
   methods: {},
   data() {
     return {
+      color: "turquoise",
+      fontWeight: "800",
+      styleObject: {
+        color: "tomato",
+        backgroundColor: "blue",
+      },
       a: "A",
       b: "B",
       isActive: true,
