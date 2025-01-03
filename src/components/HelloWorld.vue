@@ -57,27 +57,41 @@
     </div> -->
 
     <!-- <div v-html="myHTMLContent"></div> -->
+
+    <!-- <div>
+      <h2>{{ info.name }} ({{ info.age }})</h2>
+      <h2 v-show="info.playingFootball">Playing football</h2>
+      <button @click="test">Click</button>
+    </div> -->
+
+    <!-- <div>
+      <div :class="nekaKlasa">Hello</div>
+      <h1 :class="{ active: isActive, back: isActive }">hello</h1>
+    </div> -->
+
+    <div>
+      <h1 :class="[a, b]">Hello</h1>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "HelloWorld",
-  methods: {
-    onClick() {
-      console.log("Hello");
-    },
-  },
+  methods: {},
   data() {
     return {
-      // myName: "Dzenan",
-      // myText: "hello this is myText variable",
-      // myContent: `<b style='color:white'>Hello my content</b>`,
-      // isShowing: true,
-      // location: "",
-      // alphabet: ["A", "B", "C"],
-      // text: "",
+      a: "A",
+      b: "B",
+      isActive: true,
+      nekaKlasa: "color-red back active klase klase klase klase", // skladište se sve klase iz <styles> unutar ove varijable koju bindamo u neki element :class="nekaKlasa" da bi element dobio sve te skladištene stilove.
       myName: "Dzenan",
+      info: {
+        name: "Dzenan",
+        age: 20,
+        birthYear: 2004,
+        playingFootball: true,
+      },
     };
   },
   computed: {
@@ -91,4 +105,28 @@ export default {
 };
 </script>
 <!-- Dodat "scoped" atribut da bi se ogranicio CSS SAMO na ovu komponentu. -->
-<style scoped></style>
+<style scoped>
+.back {
+  background-color: aqua;
+}
+
+.active {
+  color: green;
+}
+
+.color-red {
+  color: blue;
+}
+
+.color-blue {
+  color: blue;
+}
+
+.A {
+  color: red;
+}
+
+.B {
+  background-color: black;
+}
+</style>
