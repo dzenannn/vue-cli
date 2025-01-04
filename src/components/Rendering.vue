@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Rendering Component</h1>
-    <div v-for="(item, index) in myList" :key="index">
-      <h1 @click="removeData(index)" :class="esnaf">
+    <div @click="myData(index)" v-for="(item, index) in myList" :key="index">
+      <h1 :class="esnaf">
         {{ item.name }}
       </h1>
     </div>
