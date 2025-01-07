@@ -3,23 +3,23 @@
   <!-- <button @click="page = 'Hello i am new page'">Click</button> -->
   <!-- <BooleanBox :isActive="false" /> -->
   <!-- <Number :totalNumber="150" /> -->
-  <!-- <Obj :dog="dog2" /> -->
-  <!-- <p>-----------------------------------------------------------------------</p> -->
-  <!-- <Obj :dog="{ name: 'Masna pita', gender: 'male' }" /> -->
   <!-- <Array :myArray="myArr" /> -->
   <!-- <Function :onBtnClick="showArrayElements" /> -->
-  <Title title="A" secondTitle="B" customTitle="Dzenan" />
+  <!-- <Title title="A" secondTitle="B" customTitle="Dzenan" /> -->
+  <!-- <UserInfo :name="user.name" :surname="user.surname" :age="user.age" /> -->
+  <Obj v-for="dog in dogArr" :dog="dog" :key="dog.name" />
+  <div></div>
 </template>
 
 <script>
-// import Array from "./components/Array.vue";
-// import Function from "./components/Function.vue";
 // import BooleanBox from "./components/BooleanBox.vue";
 // import Number from "./components/Number.vue";
+// import Array from "./components/Array.vue";
+// import Function from "./components/Function.vue";
+// import Title from "./components/Title.vue";
 // import UserInfo from "./components/UserInfo.vue";
-// import Obj from "./components/Obj.vue";
+import Obj from "./components/Obj.vue";
 
-import Title from "./components/Title.vue";
 export default {
   name: "App",
   // methods: {
@@ -30,15 +30,16 @@ export default {
   data() {
     return {
       // myArr: [1, 2, 3, 4, 5],
-      // dog2: {
-      //   name: "Esnaf",
-      //   gender: "Male",
-      // },
-      // user: {
-      //   name: 5,
-      //   surname: "Mecinovic",
-      //   age: 20,
-      // },
+      dogArr: [
+        { name: "Esnaf", gender: "Male" },
+        { name: "Esnaf", gender: "Male" },
+        { name: "Esnaf", gender: "Male" },
+      ],
+      user: {
+        name: "Dzenan",
+        surname: "Mecinovic",
+        age: 20,
+      },
       // page: "Hello I am page",
     };
   },
@@ -46,10 +47,10 @@ export default {
     // UserInfo,
     // BooleanBox,
     // Number,
-    // Obj,
+    Obj,
     // Array,
     // Function,
-    Title,
+    // Title,
   },
 };
 </script>

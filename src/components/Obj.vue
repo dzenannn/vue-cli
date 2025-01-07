@@ -6,17 +6,17 @@
 </template>
 
 <script>
-class Dog {
-  constructor(name, gender) {
-    (this.name = name), (this.gender = gender);
-  }
-}
+// class Dog {
+//   constructor(name, gender) {
+//     (this.name = name), (this.gender = gender);
+//   }
+// }
 
 export default {
   name: "Obj",
   props: {
     dog: {
-      type: Dog,
+      type: Object,
     },
   },
 };
