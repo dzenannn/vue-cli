@@ -5,10 +5,14 @@
   <!-- <Number :totalNumber="150" /> -->
   <!-- <Array :myArray="myArr" /> -->
   <!-- <Function :onBtnClick="showArrayElements" /> -->
-  <!-- <Title title="A" secondTitle="B" customTitle="Dzenan" /> -->
+  <Title
+    @onCustomTitle="onTitleClick($event)"
+    title="A"
+    secondTitle="B"
+    customTitle="Dzenan"
+  />
   <!-- <UserInfo :name="user.name" :surname="user.surname" :age="user.age" /> -->
-  <Obj v-for="dog in dogArr" :dog="dog" :key="dog.name" />
-  <div></div>
+  <!-- <Obj v-for="dog in dogArr" :dog="dog" :key="dog.name" /> -->
 </template>
 
 <script>
@@ -16,17 +20,20 @@
 // import Number from "./components/Number.vue";
 // import Array from "./components/Array.vue";
 // import Function from "./components/Function.vue";
-// import Title from "./components/Title.vue";
+import Title from "./components/Title.vue";
 // import UserInfo from "./components/UserInfo.vue";
-import Obj from "./components/Obj.vue";
+// import Obj from "./components/Obj.vue";
 
 export default {
   name: "App",
-  // methods: {
-  //   showArrayElements() {
-  //     console.log(...this.myArr);
-  //   },
-  // },
+  methods: {
+    showArrayElements() {
+      console.log(...this.myArr);
+    },
+    onTitleClick(event) {
+      console.log("Title", event);
+    },
+  },
   data() {
     return {
       // myArr: [1, 2, 3, 4, 5],
@@ -47,10 +54,10 @@ export default {
     // UserInfo,
     // BooleanBox,
     // Number,
-    Obj,
+    // Obj,
     // Array,
     // Function,
-    // Title,
+    Title,
   },
 };
 </script>
