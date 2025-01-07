@@ -1,38 +1,55 @@
 <template>
   <!-- <UserInfo :name="user.name" :surname="user.surname" :age="user.age" /> -->
   <!-- <button @click="page = 'Hello i am new page'">Click</button> -->
-  <BooleanBox :isActive="false" />
-  <Number :totalNumber="150" />
-  <Obj :dog="dog2" />
+  <!-- <BooleanBox :isActive="false" /> -->
+  <!-- <Number :totalNumber="150" /> -->
+  <!-- <Obj :dog="dog2" /> -->
+  <!-- <p>-----------------------------------------------------------------------</p> -->
+  <!-- <Obj :dog="{ name: 'Masna pita', gender: 'male' }" /> -->
+  <!-- <Array :myArray="myArr" /> -->
+  <!-- <Function :onBtnClick="showArrayElements" /> -->
+  <Title title="A" secondTitle="B" customTitle="Dzenan" />
 </template>
 
 <script>
-import BooleanBox from "./components/BooleanBox.vue";
-import Number from "./components/Number.vue";
+// import Array from "./components/Array.vue";
+// import Function from "./components/Function.vue";
+// import BooleanBox from "./components/BooleanBox.vue";
+// import Number from "./components/Number.vue";
 // import UserInfo from "./components/UserInfo.vue";
-import Obj from "./components/Obj.vue";
+// import Obj from "./components/Obj.vue";
 
+import Title from "./components/Title.vue";
 export default {
   name: "App",
+  // methods: {
+  //   showArrayElements() {
+  //     console.log(...this.myArr);
+  //   },
+  // },
   data() {
     return {
-      dog2: {
-        name: "Esnaf",
-        gender: "Male",
-      },
-      user: {
-        name: 5,
-        surname: "Mecinovic",
-        age: 20,
-      },
-      page: "Hello I am page",
+      // myArr: [1, 2, 3, 4, 5],
+      // dog2: {
+      //   name: "Esnaf",
+      //   gender: "Male",
+      // },
+      // user: {
+      //   name: 5,
+      //   surname: "Mecinovic",
+      //   age: 20,
+      // },
+      // page: "Hello I am page",
     };
   },
   components: {
     // UserInfo,
-    BooleanBox,
-    Number,
-    Obj,
+    // BooleanBox,
+    // Number,
+    // Obj,
+    // Array,
+    // Function,
+    Title,
   },
 };
 </script>
