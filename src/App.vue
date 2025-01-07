@@ -1,35 +1,38 @@
 <template>
-  <!-- <Title /> -->
-  <HelloWorld msg="prop msg iz HelloWorld-a u App" />
-  <h1 v-if="message.length < 5">{{ message }}</h1>
-  <Rendering />
-  <ObjectRendering />
-  <HelloComponent />
-  <UserInfo />
+  <!-- <UserInfo :name="user.name" :surname="user.surname" :age="user.age" /> -->
+  <!-- <button @click="page = 'Hello i am new page'">Click</button> -->
+  <BooleanBox :isActive="false" />
+  <Number :totalNumber="150" />
+  <Obj :dog="dog2" />
 </template>
 
 <script>
-// import HelloComponent from "./components/HelloComponent.vue";
-// import Title from "./components/Title.vue";
+import BooleanBox from "./components/BooleanBox.vue";
+import Number from "./components/Number.vue";
 // import UserInfo from "./components/UserInfo.vue";
-import HelloWorld from "./components/HelloWorld.vue";
-// import ObjectRendering from "./components/ObjectRendering.vue";
-// import Rendering from "./components/Rendering.vue";
+import Obj from "./components/Obj.vue";
 
 export default {
   name: "App",
   data() {
     return {
-      message: "14523",
+      dog2: {
+        name: "Esnaf",
+        gender: "Male",
+      },
+      user: {
+        name: 5,
+        surname: "Mecinovic",
+        age: 20,
+      },
+      page: "Hello I am page",
     };
   },
   components: {
-    // HelloComponent,
-    // Title,
-    HelloWorld,
-    // Rendering,
-    // ObjectRendering,
     // UserInfo,
+    BooleanBox,
+    Number,
+    Obj,
   },
 };
 </script>
@@ -50,6 +53,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #d4d4d4;
+  color: gainsboro;
 }
 </style>

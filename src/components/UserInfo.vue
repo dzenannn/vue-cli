@@ -1,15 +1,18 @@
 <template>
   <div>
-    <h1>Detail</h1>
-    <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-      repudiandae!
-    </p>
+    <h1>{{ name }}</h1>
+    <h1>{{ surname }}</h1>
+    <h1>{{ age }}</h1>
   </div>
 </template>
 <script>
 export default {
   name: "UserInfo",
+  props: {
+    name: String,
+    surname: String,
+    age: [String, Number],
+  },
 };
 </script>
 
