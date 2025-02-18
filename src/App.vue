@@ -1,84 +1,32 @@
 <template>
-  <!-- <UserInfo :name="user.name" :surname="user.surname" :age="user.age" /> -->
-  <!-- <button @click="page = 'Hello i am new page'">Click</button> -->
-  <!-- <BooleanBox :isActive="false" /> -->
-  <!-- <Number :totalNumber="150" /> -->
-  <!-- <Array :myArray="myArr" /> -->
-  <!-- <Function :onBtnClick="showArrayElements" /> -->
-  <!-- <Title
-    @onCustomTitle="onTitleClick($event)"
-    title="A"
-    secondTitle="B"
-    customTitle="Dzenan"
-  /> -->
-  <!-- <UserInfo :name="user.name" :surname="user.surname" :age="user.age" /> -->
-  <!-- <Obj v-for="dog in dogArr" :dog="dog" :key="dog.name" /> -->
-  <div :class="wrapper">
-    <Header />
-    <div :class="bottomWrapper">
-      <Content />
-      <Side />
-    </div>
+  <div>
+    <Hello>
+      <template #helloHeader>
+        <h2>Ja sam neki heder</h2>
+        <ul>
+          <li>broj 1</li>
+          <li>broj 2</li>
+          <li>broj 3</li>
+        </ul>
+      </template>
+      <h1>Hello</h1>
+      <p>How are you?</p>
+      <button>Click</button>
+      <template v-slot:helloFooter>Ja sam footer</template>
+      <Test />
+    </Hello>
   </div>
 </template>
 
 <script>
-import Header from "./components/example/Header.vue";
-import Content from "./components/example/Content.vue";
-import Side from "./components/example/Side.vue";
-// import BooleanBox from "./components/BooleanBox.vue";
-// import Number from "./components/Number.vue";
-// import Array from "./components/Array.vue";
-// import Function from "./components/Function.vue";
-// import Title from "./components/Title.vue";
-// import UserInfo from "./components/UserInfo.vue";
-// import Obj from "./components/Obj.vue";
+import Hello from "./components/Hello.vue";
+import Test from "./components/Test.vue";
 
 export default {
   name: "App",
-  methods: {
-    showArrayElements() {
-      console.log(...this.myArr);
-    },
-    onTitleClick(event) {
-      console.log("Title", event);
-    },
-  },
-  provide() {
-    return {
-      // text: this.text,
-    };
-  },
-  data() {
-    return {
-      wrapper: "w",
-      bottomWrapper: "bW",
-      // text: "Hellooooooo SubTitle",
-      // myArr: [1, 2, 3, 4, 5],
-      // dogArr: [
-      //   { name: "Esnaf", gender: "Male" },
-      //   { name: "Esnaf", gender: "Male" },
-      //   { name: "Esnaf", gender: "Male" },
-      // ],
-      // user: {
-      //   name: "Dzenan",
-      //   surname: "Mecinovic",
-      //   age: 20,
-      // },
-      // page: "Hello I am page",
-    };
-  },
-  components: {
-    Header,
-    Content,
-    Side,
-    // UserInfo,
-    // BooleanBox,
-    // Number,
-    // Obj,
-    // Array,
-    // Function,
-    // Title,
+  components: { Hello, Test },
+  created() {
+    (() => console.log("Kreirana je komponenta."))();
   },
 };
 </script>
@@ -91,19 +39,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #d99ac5;
 }
 #app {
   font-family: "Poppins";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-}
-.w {
-  display: flex;
-  flex-direction: column;
-}
-
-.bW {
-  display: flex;
 }
 </style>

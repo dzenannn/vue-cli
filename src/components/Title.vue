@@ -3,7 +3,7 @@
     <h1 @click="onTitleClick">{{ title }}</h1>
     <h2>{{ secondTitle }}</h2>
     <h2>{{ customTitle }}</h2>
-    <SubTitle @subTitleClick="subTitleClick2" />
+    <SubTitle  />
   </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
   name: "Title",
   methods: {
     onTitleClick() {
-      this.$emit("onCustomTitle", "esnaf baljic");
+      this.$emit("onCustomTitle", 500);
     },
     subTitleClick2() {
       console.log("2.example, stisnut subtitle paragraph iz SubTitle.vue");
@@ -24,6 +24,7 @@ export default {
     SubTitle,
   },
   props: {
+    sTitleText: String,
     title: String,
     secondTitle: String,
     customTitle: {

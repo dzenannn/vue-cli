@@ -1,14 +1,14 @@
 <template>
   <div>
     <p @click="$emit('subTitleClick')">SubTitle</p>
-    <h1>{{ text }}</h1>
+    <h1>{{ sText }}</h1>
   </div>
 </template>
 
 <script>
 export default {
   name: "SubTitle",
-  inject: ["text"],
+  inject: ['sText']
 };
 </script>
 
