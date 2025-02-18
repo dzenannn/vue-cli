@@ -1,30 +1,23 @@
 <template>
   <div>
-    <Hello>
-      <template #helloHeader>
-        <h2>Ja sam neki heder</h2>
-        <ul>
-          <li>broj 1</li>
-          <li>broj 2</li>
-          <li>broj 3</li>
-        </ul>
+    <Card>
+      <template #cardImg>
+        <img
+          src="https://www.koolbadges.co.uk/images/thumbnails/dominican-republic-flag-badge-400x400.jpg"
+        />
       </template>
-      <h1>Hello</h1>
-      <p>How are you?</p>
-      <button>Click</button>
-      <template v-slot:helloFooter>Ja sam footer</template>
-      <Test />
-    </Hello>
+      <h1>I am body</h1>
+      <template #cardFooter>Hello I am Footer</template>
+    </Card>
   </div>
 </template>
 
 <script>
-import Hello from "./components/Hello.vue";
-import Test from "./components/Test.vue";
+import Card from "./components/Card.vue";
 
 export default {
   name: "App",
-  components: { Hello, Test },
+  components: { Card },
   created() {
     (() => console.log("Kreirana je komponenta."))();
   },
@@ -46,5 +39,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+img {
+  width: 100%;
 }
 </style>
