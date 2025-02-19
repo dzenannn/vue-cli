@@ -9,5 +9,7 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  "exclude": ["node_modules", "dist", "**/components-cli/**"],
+  "include": ["src/**/*"],
   "vue/multi-word-component-names": "off"
 }
