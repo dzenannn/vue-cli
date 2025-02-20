@@ -9,7 +9,7 @@
     >
       PEKARA MENI
     </h1>
-    <ul class="menu">
+    <ul @click="count++" class="menu">
       <div>
         <li>Hleb - 80 rsd</li>
         <li>Pitica - 70 rsd</li>
@@ -20,11 +20,23 @@
         <li>Ljep u piticu - 150 rsd</li>
       </div>
     </ul>
+    <h2 style="text-align: center">{{ count }}</h2>
   </div>
 </template>
 <script>
 export default {
   name: "Component A",
+  deactivated() {
+    console.log("Odo");
+  },
+  activated() {
+    console.log("Evo me");
+  },
+  data() {
+    return {
+      count: 0,
+    };
+  },
 };
 </script>
 <style scoped>

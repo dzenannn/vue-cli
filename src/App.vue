@@ -1,29 +1,41 @@
 <template>
   <div class="wrapper">
-    <button @click="activeComponent = 'KomponentaA'">Pekara MENI</button>
-    <button @click="activeComponent = 'KomponentaB'">Mesara MENI</button>
+    <button @click="showModal = true">Open</button>
+    <teleport to="body">
+      <div v-if="showModal" class="modal">
+        <div class="modalContent">
+          <h1>Modal Header</h1>
+          <p>Paragraf unutar modala.</p>
+          <button @click="showModal = false">Close</button>
+        </div>
+      </div>
+    </teleport>
+    <!-- <button @click="activeComponent = 'KomponentaA'">Pekara MENI</button>
+    <button @click="activeComponent = 'KomponentaB'">Mesara MENI</button> -->
     <!-- <button @click="activeComponent = 'KomponentaC'"></button> -->
-  </div>
-  <h5 v-show="activeComponent" :style="centriranjeTeksta">
+    <!-- </div> -->
+    <!-- <h5 v-show="activeComponent" :style="centriranjeTeksta">
     Prikazuje se:
     {{
       activeComponent === "KomponentaA" ? "Cenovnik Pekare" : "Cenovnik Mesare"
     }}
-  </h5>
-  <keep-alive> <component :is="activeComponent" /></keep-alive>
-  <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
-  <!-- kad se opet vratimo na komponentu, čekaju nas ranije-renderovani podaci -->
+  </h5> -->
+    <!-- <keep-alive> <component :is="activeComponent" /></keep-alive> -->
+    <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
+    <!-- kad se opet vratimo na komponentu, čekaju nas ranije-renderovani podaci -->
+  </div>
 </template>
 
 <script>
-import KomponentaA from "./components/dinamicke/KomponentaA.vue";
-import KomponentaB from "./components/dinamicke/KomponentaB.vue";
-import KomponentaC from "./components/dinamicke/KomponentaC.vue";
+// import KomponentaA from "./components/dinamicke/KomponentaA.vue";
+// import KomponentaB from "./components/dinamicke/KomponentaB.vue";
+// import KomponentaC from "./components/dinamicke/KomponentaC.vue";
 export default {
   name: "App",
-  components: { KomponentaA, KomponentaB, KomponentaC },
+  // components: { KomponentaA, KomponentaB, KomponentaC },
   data() {
     return {
+      showModal: false,
       activeComponent: null,
       centriranjeTeksta: {
         textAlign: "center",
@@ -66,5 +78,25 @@ button {
   background-color: #2c3e50;
   color: #fff;
   padding: 8px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: #b37ba4;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 10px;
 }
 </style>
