@@ -2,11 +2,11 @@
   <div class="wrapper">
     <button @click="showModal = true">Open</button>
     <teleport to="body">
-      <div v-if="showModal" class="modal">
-        <div class="modalContent">
+      <div v-if="showModal" @click="closeModal" class="modal">
+        <div class="modalContent" @click.stop>
           <h1>Modal Header</h1>
           <p>Paragraf unutar modala.</p>
-          <button @click="showModal = false">Close</button>
+          <button @click="closeModal">Close</button>
         </div>
       </div>
     </teleport>
@@ -42,6 +42,11 @@ export default {
         textDecoration: "underline",
       },
     };
+  },
+  methods: {
+    closeModal() {
+      this.showModal = false;
+    },
   },
 };
 </script>
