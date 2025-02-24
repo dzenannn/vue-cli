@@ -1,5 +1,9 @@
 <template>
   <div class="wrapper">
+    <img
+      src="https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg"
+      id="myImg"
+    />
     <button @click="showModal = true">Open</button>
     <teleport to="body">
       <div v-if="showModal" @click="closeModal" class="modal">
@@ -24,29 +28,54 @@
     <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
     <!-- kad se opet vratimo na komponentu, čekaju nas ranije-renderovani podaci -->
   </div>
+  <div>
+    <Hooks v-if="show" />
+    <button @click="show = !show">Show/Hide</button>
+  </div>
 </template>
 
 <script>
+import Hooks from "./components/Hooks.vue";
+
 // import KomponentaA from "./components/dinamicke/KomponentaA.vue";
 // import KomponentaB from "./components/dinamicke/KomponentaB.vue";
 // import KomponentaC from "./components/dinamicke/KomponentaC.vue";
 export default {
   name: "App",
   // components: { KomponentaA, KomponentaB, KomponentaC },
+  components: { Hooks },
   data() {
     return {
+      show: true,
       showModal: false,
       activeComponent: null,
+      name: "Dzenan Mecinovic",
       centriranjeTeksta: {
         textAlign: "center",
         textDecoration: "underline",
       },
     };
   },
+  created() {
+    // console.log(this.name);
+  },
+  beforeCreate() {
+    console.log("beforeCreate funkcija");
+  },
   methods: {
     closeModal() {
       this.showModal = false;
     },
+  },
+  beforeMount() {
+    // console.log(this.name);
+    // const img = document.getElementById("myImg");
+    // console.log("myImg", img);
+  },
+  mounted() {
+    // console.log(this.name);
+    const img = document.getElementById("myImg");
+    console.log("myImg", img);
   },
 };
 </script>
