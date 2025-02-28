@@ -1,11 +1,8 @@
 <template>
   <div>
-    <img
-      src="https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg"
-      alt="hoodie-monster"
-      ref="vueImg"
-    />
-    <p ref="myParagraph" v-for="item in myArr" :key="item">{{ item }}</p>
+    <h1>{{ total }}</h1>
+    <h3>{{ totalResult }}</h3>
+    <button @click="total += 1">Click</button>
   </div>
   <!-- <keep-alive> <component :is="activeComponent" /></keep-alive> -->
   <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
@@ -16,14 +13,15 @@
 export default {
   name: "App",
   components: {},
-  mounted() {
-    this.$refs.vueImg.style.width = "350px";
-    this.$refs.myParagraph[1].style.color = "cyan";
-    this.$refs.myParagraph[2].style.fontSize = "1.75rem";
+  computed: {
+    totalResult() {
+      console.log("Computed property rendered");
+      return this.total > 10 ? "Bigger than 10" : "Lower than 10";
+    },
   },
   data() {
     return {
-      myArr: [1, 2, 3],
+      total: 0,
     };
   },
 };
