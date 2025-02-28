@@ -1,40 +1,30 @@
 <template>
-  <div class="wrapper">
+  <div>
     <img
       src="https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg"
+      alt="hoodie-monster"
       ref="vueImg"
     />
-    <button @click="$refs.vueImg.style.width = '200px'">Big</button>
-    <button @click="$refs.vueImg.style.width = '700px'">Small</button>
-    <!-- <button @click="activeComponent = 'KomponentaA'">Pekara MENI</button>
-    <button @click="activeComponent = 'KomponentaB'">Mesara MENI</button> -->
-    <!-- <button @click="activeComponent = 'KomponentaC'"></button> -->
-    <!-- </div> -->
-    <!-- <h5 v-show="activeComponent" :style="centriranjeTeksta">
-    Prikazuje se:
-    {{
-      activeComponent === "KomponentaA" ? "Cenovnik Pekare" : "Cenovnik Mesare"
-    }}
-  </h5> -->
-    <!-- <keep-alive> <component :is="activeComponent" /></keep-alive> -->
-    <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
-    <!-- kad se opet vratimo na komponentu, čekaju nas ranije-renderovani podaci -->
+    <p ref="myParagraph" v-for="item in myArr" :key="item">{{ item }}</p>
   </div>
+  <!-- <keep-alive> <component :is="activeComponent" /></keep-alive> -->
+  <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
+  <!-- kad se opet vratimo na komponentu, čekaju nas ranije-renderovani podaci -->
 </template>
 
 <script>
-// import KomponentaA from "./components/dinamicke/KomponentaA.vue";
-// import KomponentaB from "./components/dinamicke/KomponentaB.vue";
-// import KomponentaC from "./components/dinamicke/KomponentaC.vue";
 export default {
   name: "App",
-  // components: { KomponentaA, KomponentaB, KomponentaC },
   components: {},
   mounted() {
-    // this.$refs.vueImg.style.width = "200px";
+    this.$refs.vueImg.style.width = "350px";
+    this.$refs.myParagraph[1].style.color = "cyan";
+    this.$refs.myParagraph[2].style.fontSize = "1.75rem";
   },
   data() {
-    return {};
+    return {
+      myArr: [1, 2, 3],
+    };
   },
 };
 </script>
@@ -55,12 +45,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 2rem;
+
+div {
+  place-items: center;
 }
+
 button {
   cursor: pointer;
   height: 40px;
@@ -71,25 +60,5 @@ button {
   background-color: #2c3e50;
   color: #fff;
   padding: 8px;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: aliceblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modalContent {
-  background-color: #b37ba4;
-  color: rgb(0, 0, 0);
-  padding: 20px;
-  border-radius: 10px;
 }
 </style>
