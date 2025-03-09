@@ -1,6 +1,35 @@
 <script>
 export default {
   name: "Form",
+  data() {
+    return {
+      countries: [
+        { id: 1, name: "England" },
+        { id: 2, name: "Serbia" },
+        { id: 3, name: "Germany" },
+      ],
+      user: {
+        name: "",
+        surname: "",
+        email: "",
+        country: 1,
+      },
+    };
+  },
+  methods: {
+    onFileChange(e) {
+      console.log(e);
+    },
+    getCountryNameById(id) {
+      const country = this.getCountries.find((item) => item.id === id);
+      return country.name;
+    },
+  },
+  computed: {
+    getCountries() {
+      return this.countries;
+    },
+  },
 };
 </script>
 
@@ -10,11 +39,17 @@ export default {
       <form class="myForm">
         <div class="inputDiv">
           <label for="nameInput">Name</label>
-          <input type="text" id="nameInput" placeholder="Enter your name" />
+          <input
+            v-model="user.name"
+            type="text"
+            id="nameInput"
+            placeholder="Enter your name"
+          />
         </div>
         <div class="inputDiv">
           <label for="surnameInput">Surname</label>
           <input
+            v-model="user.surname"
             type="text"
             id="surnameInput"
             placeholder="Enter your surname"
@@ -22,14 +57,23 @@ export default {
         </div>
         <div class="inputDiv">
           <label for="emailInput">E-mail</label>
-          <input type="email" id="emailInput" placeholder="Enter your email" />
+          <input
+            v-model="user.email"
+            type="email"
+            id="emailInput"
+            placeholder="Enter your email"
+          />
         </div>
         <div class="inputDiv">
           <label for="country">Country</label>
-          <select name="country" id="country">
-            <option>England</option>
-            <option>Serbia</option>
-            <option>Germany</option>
+          <select v-model="user.country" name="country" id="country">
+            <option
+              v-for="item in getCountries"
+              :key="item.id"
+              :value="item.id"
+            >
+              {{ item.name }}
+            </option>
           </select>
         </div>
         <div class="inputDiv">
@@ -66,21 +110,37 @@ export default {
             </div>
           </div>
         </div>
+        <div>
+          <input @change="onFileChange" type="file" hidden ref="fileInput" />
+          <button
+            id="fileButton"
+            type="button"
+            @click="$refs.fileInput.click()"
+          >
+            Select File
+          </button>
+        </div>
         <button type="submit">Send data</button>
       </form>
+    </div>
+    <div class="wrapper">
+      <p>User Info: {{ user }}</p>
+      <p>User Country: {{ getCountryNameById(user.country) }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .main {
-  width: 140%;
-  margin: 25%;
+  width: 70vw;
+  margin: 1.5rem 0 1.5rem 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 10px;
 }
 .wrapper {
-  width: 80%;
+  width: 50%;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 1px 3px 3px 1px;
@@ -126,5 +186,18 @@ select {
 
 .checkboxDiv {
   display: flex;
+}
+
+#fileButton {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: green;
+  color: #fff;
+  cursor: pointer;
+}
+
+#fileButton:active {
+  transform: scale(0.95);
 }
 </style>
