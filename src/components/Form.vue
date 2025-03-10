@@ -1,9 +1,12 @@
 <script>
-import IsAccepted from "./isAccepted.vue";
+import DynamicInput from "./DynamicInput.vue";
+
+// import IsAccepted from "./isAccepted.vue";
 
 export default {
   name: "Form",
-  components: { IsAccepted },
+  // components: { IsAccepted },
+  components: { DynamicInput },
   data() {
     return {
       userValidations: {
@@ -93,7 +96,7 @@ export default {
 
 <template>
   <div class="main">
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <form @submit.prevent="submitForm" class="myForm">
         <div class="inputDiv">
           <label for="nameInput">Name</label>
@@ -193,7 +196,8 @@ export default {
     <div class="wrapper">
       <p>User Info: {{ user }}</p>
       <p>User Country: {{ getCountryNameById(user.country) }}</p>
-    </div>
+    </div> -->
+    <DynamicInput />
   </div>
 </template>
 
