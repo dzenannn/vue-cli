@@ -1,8 +1,25 @@
 <script>
+import IsAccepted from "./isAccepted.vue";
+
 export default {
   name: "Form",
+  components: { IsAccepted },
   data() {
     return {
+      userValidations: {
+        name: false,
+        surname: false,
+        email: false,
+      },
+      genders: [
+        { id: 1, name: "Male" },
+        { id: 2, name: "Female" },
+      ],
+      hobbies: [
+        { id: 1, name: "Football" },
+        { id: 2, name: "Basketball" },
+        { id: 3, name: "Gaming" },
+      ],
       countries: [
         { id: 1, name: "England" },
         { id: 2, name: "Serbia" },
@@ -13,16 +30,57 @@ export default {
         surname: "",
         email: "",
         country: 1,
+        address: "",
+        hobbies: [],
+        genders: [],
+        file: "",
       },
+      file: {},
     };
   },
   methods: {
+    validateData() {
+      const obj = {
+        name: this.user.name.trim() === "",
+        surname: this.user.surname.trim() === "",
+        email: this.user.email.trim() === "",
+      };
+      console.log(obj);
+      return obj;
+    },
     onFileChange(e) {
-      console.log(e);
+      console.log(e.target.files);
+      this.user.file = {
+        name: e.target.files[0].name,
+        size: e.target.files[0].size,
+        type: e.target.files[0].type,
+      };
+
+      this.file = { name: e.target.files[0].name };
     },
     getCountryNameById(id) {
       const country = this.getCountries.find((item) => item.id === id);
       return country.name;
+    },
+    submitForm() {
+      const validationResult = this.validateData();
+      this.userValidations = validationResult;
+      if (Object.values(validationResult).includes(true)) {
+        alert("Form is invalid");
+      } else {
+        this.user = {
+          name: "",
+          surname: "",
+          email: "",
+          country: 1,
+          address: "",
+          hobbies: [],
+          genders: [],
+          file: "",
+          isAccepted: true,
+        };
+        this.file = [];
+      }
     },
   },
   computed: {
@@ -36,10 +94,11 @@ export default {
 <template>
   <div class="main">
     <div class="wrapper">
-      <form class="myForm">
+      <form @submit.prevent="submitForm" class="myForm">
         <div class="inputDiv">
           <label for="nameInput">Name</label>
           <input
+            :class="userValidations.name ? 'isError' : ''"
             v-model="user.name"
             type="text"
             id="nameInput"
@@ -49,6 +108,7 @@ export default {
         <div class="inputDiv">
           <label for="surnameInput">Surname</label>
           <input
+            :class="userValidations.surname ? 'isError' : ''"
             v-model="user.surname"
             type="text"
             id="surnameInput"
@@ -58,6 +118,7 @@ export default {
         <div class="inputDiv">
           <label for="emailInput">E-mail</label>
           <input
+            :class="userValidations.email ? 'isError' : ''"
             v-model="user.email"
             type="email"
             id="emailInput"
@@ -78,35 +139,39 @@ export default {
         </div>
         <div class="inputDiv">
           <label for="address">Address</label>
-          <textarea name="address" id="address" rows="5"></textarea>
+          <textarea
+            v-model="user.address"
+            name="address"
+            id="address"
+            rows="3"
+          ></textarea>
         </div>
         <div>
           <h4>Hobbies</h4>
           <div class="checkboxDiv">
-            <div>
-              <label for="checkbox1">Football</label>
-              <input type="checkbox" id="checkbox1" />
-            </div>
-            <div>
-              <label for="checkbox2">Basketball</label>
-              <input type="checkbox" id="checkbox2" />
-            </div>
-            <div>
-              <label for="checkbox3">Gaming</label>
-              <input type="checkbox" id="checkbox3" />
+            <div v-for="hobby in hobbies" :key="hobby.id">
+              <label for="checkbox1"> {{ hobby.name }}</label>
+              <input
+                v-model="user.hobbies"
+                type="checkbox"
+                id="checkbox1"
+                :value="hobby.id"
+              />
             </div>
           </div>
         </div>
         <div>
           <h4>Gender</h4>
           <div class="checkboxDiv">
-            <div>
-              <label for="radio1">Male</label>
-              <input type="radio" name="gender" id="radio1" />
-            </div>
-            <div>
-              <label for="radio2">Female</label>
-              <input type="radio" name="gender" id="radio2" />
+            <div v-for="gender in genders" :key="gender.id">
+              <label :for="gender.name"> {{ gender.name }} </label>
+              <input
+                v-model="user.genders"
+                type="radio"
+                name="gender"
+                :id="gender.name"
+                :value="gender.id"
+              />
             </div>
           </div>
         </div>
@@ -117,10 +182,12 @@ export default {
             type="button"
             @click="$refs.fileInput.click()"
           >
-            Select File
+            {{ file?.name ? "Change File" : "Select File" }}
           </button>
         </div>
-        <button type="submit">Send data</button>
+        <IsAccepted v-model="user.isAccepted" />
+        <button type="submit">Send Data</button>
+        <span v-if="file?.name">{{ file.name }}</span>
       </form>
     </div>
     <div class="wrapper">
@@ -131,6 +198,10 @@ export default {
 </template>
 
 <style scoped>
+.isError {
+  border-color: red !important;
+}
+
 .main {
   width: 70vw;
   margin: 1.5rem 0 1.5rem 0;
