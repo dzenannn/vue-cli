@@ -4,11 +4,14 @@
     <h3>{{ totalResult }}</h3>
     <button @click="total += 1">Click</button> -->
     <!-- <Form /> -->
-    <KomponentaPrva v-if="activeComponent === 1" />
+    <!-- <KomponentaPrva v-if="activeComponent === 1" />
     <KomponentaDruga v-if="activeComponent === 0" />
     <button @click="activeComponent = activeComponent === 1 ? 0 : 1">
       Change
-    </button>
+    </button> -->
+    <h1>{{ name }}</h1>
+    <button @click="changeName">Change</button>
+    <MixinComp />
   </div>
   <!-- <keep-alive> <component :is="activeComponent" /></keep-alive> -->
   <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
@@ -16,34 +19,29 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
+// import { defineAsyncComponent } from "vue"; // async koristimo da nam aplikacija ne downloaduje bespotrebno neku komponentu
 
-import KomponentaPrva from "./components/KomponentaPrva.vue";
-const KomponentaDruga = defineAsyncComponent(() =>
-  import("./components/KomponentaDruga.vue")
-);
+// import KomponentaPrva from "./components/KomponentaPrva.vue";
+// const KomponentaDruga = defineAsyncComponent(() =>
+//   import("./components/KomponentaDruga.vue")
+// );
 
 // import Form from "@/components/Form.vue";
-
+import MixinComp from "./components/MixinComp.vue";
 export default {
   name: "App",
   // components: { Form },
   components: {
-    KomponentaPrva,
-    KomponentaDruga,
+    MixinComp,
+    // KomponentaPrva,
+    // KomponentaDruga,
   },
-  computed: {
-    totalResult() {
-      console.log("Computed property rendered");
-      return this.total > 10 ? "Bigger than 10" : "Lower than 10";
-    },
-  },
-  data() {
-    return {
-      total: 0,
-      activeComponent: 1,
-    };
-  },
+  // computed: {
+  //   totalResult() {
+  //     console.log("Computed property rendered");
+  //     return this.total > 10 ? "Bigger than 10" : "Lower than 10";
+  //   },
+  // },
 };
 </script>
 
