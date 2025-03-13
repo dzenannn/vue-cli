@@ -51,7 +51,7 @@ export default {
 html,
 body {
   margin: 0;
-  padding: 0;
+  padding: 3px;
   box-sizing: border-box;
   background-color: #8f5e7f;
 }
