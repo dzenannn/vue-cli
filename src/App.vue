@@ -1,6 +1,10 @@
 <template>
   <div>
-    <NextTick />
+    <CreatePost @onPostCreated="onPostCreated($event)" />
+    <div v-if="hasError" style="text-align: center">None endpoint</div>
+    <LoadingComponent v-if="isLoading" style="text-align: center" />
+    <ListWrapper @onDelete="onDeletePost($event)" v-else :userList="userList" />
+    <!-- <NextTick /> -->
     <!-- <h1>{{ total }}</h1>
     <h3>{{ totalResult }}</h3>
     <button @click="total += 1">Click</button> -->
@@ -20,7 +24,11 @@
 </template>
 
 <script>
-import NextTick from "./components/NextTick.vue";
+import CreatePost from "./components/http_operations/CreatePost.vue";
+import ListWrapper from "./components/http_operations/ListWrapper.vue";
+import LoadingComponent from "./components/http_operations/LoadingComponent.vue";
+
+// import NextTick from "./components/NextTick.vue";
 
 // import { defineAsyncComponent } from "vue"; // async koristimo da nam aplikacija ne downloaduje bespotrebno neku komponentu
 
@@ -35,10 +43,51 @@ export default {
   name: "App",
   // components: { Form },
   components: {
-    NextTick,
+    ListWrapper,
+    LoadingComponent,
+    CreatePost,
+    // NextTick,
     // MixinComp,
     // KomponentaPrva,
     // KomponentaDruga,
+  },
+  data() {
+    return {
+      userList: [],
+      isLoading: true,
+      hasError: false,
+    };
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    async getData() {
+      try {
+        const result = await fetch(
+          "https://jsonplaceholder.typicode.com/posts"
+        );
+        if (result.status == 404) {
+          this.hasError = true;
+          this.isLoading = false;
+        } else {
+          const data = await result.json();
+          this.userList = data;
+          this.isLoading = false;
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    onPostCreated(data) {
+      this.userList.unshift(data);
+    },
+    onDeletePost(id) {
+      fetch("https://jsonplaceholder.typicode.com/posts/" + id, {
+        method: "DELETE",
+      });
+      this.userList = this.userList.filter((item) => item.id !== id);
+    },
   },
   // computed: {
   //   totalResult() {

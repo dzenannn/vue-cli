@@ -7,14 +7,14 @@ const app = createApp(App);
 app.mixin({
   data() {
     return {
-      name: "DZENAN",
-      surname: "MECINOVIC",
+      // name: "DZENAN",
+      // surname: "MECINOVIC",
     };
   },
   methods: {
-    changeName() {
-      this.name = "Elliot";
-    },
+    // changeName() {
+    //   this.name = "Elliot";
+    // },
   },
 });
 app.component("myTitle", T); //? samo widedly-used komponente mogu da budu Global
