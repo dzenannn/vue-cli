@@ -1,6 +1,25 @@
-<script></script>
+<script>
+export default {
+  methods: {
+    goToUsers() {
+      this.$router.push('/users')
+    },
+    goToUsersDetail() {
+      // this.$router.push('/users/50')
+      this.$router.push({
+        name: 'usersDetail',
+        params: { userId: 225 },
+        query: { name: 'Jane', surname: 'Eyre' },
+      })
+    },
+  },
+}
+</script>
 
 <template>
+  <!-- <button @click="$router.push('/users')">Click and go to users page</button> -->
+  <!-- <button @click="goToUsers">Click and go to users page</button> -->
+  <button @click="goToUsersDetail">Click and go to users detail</button>
   <div>
     <h1>App.vue</h1>
 
@@ -10,6 +29,11 @@
           <router-link class="routerLink" to="/">(blank)</router-link>|
           <router-link class="routerLink" to="/users">Users</router-link>|
           <router-link class="routerLink" to="/about">About</router-link>|
+          <router-link
+            class="routerLink"
+            :to="{ name: 'usersDetail', params: { userId: '100' }, query: { name: 'bla' } }"
+            >Korisnici</router-link
+          >|
         </nav>
       </div>
       <div class="item2">Menu</div>

@@ -1,4 +1,6 @@
 import HomeView from '@/views/HomeView.vue'
+import NotFound from '@/views/notFound.vue'
+import UserDetailView from '@/views/UserDetailView.vue'
 import Users from '@/views/UsersView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -9,6 +11,11 @@ const routes = [
     component: HomeView,
   },
   {
+    path: '/:xyz(.*)*',
+    name: 'notFound',
+    component: NotFound,
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue'),
@@ -17,6 +24,12 @@ const routes = [
     path: '/users',
     name: 'users',
     component: Users,
+    sensitive: true,
+  },
+  {
+    path: '/users/:userId',
+    name: 'usersDetail',
+    component: UserDetailView,
   },
 ]
 
