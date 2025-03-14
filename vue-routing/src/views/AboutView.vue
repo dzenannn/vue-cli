@@ -1,7 +1,7 @@
 <script></script>
 <template>
   <div>
-    <h2>About Page</h2>
+    <h3>About Page</h3>
   </div>
 </template>
 

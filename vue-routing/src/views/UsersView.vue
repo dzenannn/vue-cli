@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div>
-    <h1>User Page</h1>
+    <h3>Users Page</h3>
   </div>
 </template>
 
