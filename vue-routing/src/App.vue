@@ -1,10 +1,21 @@
 <script></script>
 
 <template>
-  <div></div>
+  <div>
+    <h1>Eeee</h1>
+    <router-view />
+  </div>
 </template>
 
-<style scoped>
+<style>
+#app {
+  font-family: Helvetica;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
 * {
   padding: 0;
   margin: 0;
