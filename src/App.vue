@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NextTick />
     <!-- <h1>{{ total }}</h1>
     <h3>{{ totalResult }}</h3>
     <button @click="total += 1">Click</button> -->
@@ -9,9 +10,9 @@
     <button @click="activeComponent = activeComponent === 1 ? 0 : 1">
       Change
     </button> -->
-    <h1>{{ name }}</h1>
+    <!-- <h1>{{ name }}</h1>
     <button @click="changeName">Change</button>
-    <MixinComp />
+    <MixinComp /> -->
   </div>
   <!-- <keep-alive> <component :is="activeComponent" /></keep-alive> -->
   <!-- keep-alive sluzi da nam sačuva sve podatke sa određene komponente -->
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+import NextTick from "./components/NextTick.vue";
+
 // import { defineAsyncComponent } from "vue"; // async koristimo da nam aplikacija ne downloaduje bespotrebno neku komponentu
 
 // import KomponentaPrva from "./components/KomponentaPrva.vue";
@@ -27,12 +30,13 @@
 // );
 
 // import Form from "@/components/Form.vue";
-import MixinComp from "./components/MixinComp.vue";
+// import MixinComp from "./components/MixinComp.vue";
 export default {
   name: "App",
   // components: { Form },
   components: {
-    MixinComp,
+    NextTick,
+    // MixinComp,
     // KomponentaPrva,
     // KomponentaDruga,
   },
