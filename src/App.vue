@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import CreatePost from "./components/http_operations/CreatePost.vue";
 import ListWrapper from "./components/http_operations/ListWrapper.vue";
 import LoadingComponent from "./components/http_operations/LoadingComponent.vue";
@@ -64,14 +66,19 @@ export default {
   methods: {
     async getData() {
       try {
-        const result = await fetch(
+        // const result = await fetch(
+        //   "https://jsonplaceholder.typicode.com/posts"
+        // );
+        const result = await axios.get(
           "https://jsonplaceholder.typicode.com/posts"
         );
+        console.log(result);
+
         if (result.status == 404) {
           this.hasError = true;
           this.isLoading = false;
         } else {
-          const data = await result.json();
+          const data = await result.data;
           this.userList = data;
           this.isLoading = false;
         }
@@ -83,9 +90,10 @@ export default {
       this.userList.unshift(data);
     },
     onDeletePost(id) {
-      fetch("https://jsonplaceholder.typicode.com/posts/" + id, {
-        method: "DELETE",
-      });
+      // fetch("https://jsonplaceholder.typicode.com/posts/" + id, {
+      //   method: "DELETE",
+      // });
+      axios.delete("https://jsonplaceholder.typicode.com/posts/" + id);
       this.userList = this.userList.filter((item) => item.id !== id);
     },
   },
