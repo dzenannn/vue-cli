@@ -29,16 +29,22 @@ export default {
           <router-link class="routerLink" to="/">(blank)</router-link>|
           <router-link class="routerLink" to="/users">Users</router-link>|
           <router-link class="routerLink" to="/about">About</router-link>|
-          <router-link
+          <!-- <router-link
             class="routerLink"
             :to="{ name: 'usersDetail', params: { userId: '100' }, query: { name: 'bla' } }"
             >Korisnici</router-link
-          >|
+          >| -->
         </nav>
       </div>
-      <div class="item2">Menu</div>
+      <div class="item2">
+        <h1>Menu</h1>
+        <router-view name="customMenuView" />
+      </div>
       <div class="item3"><router-view /></div>
-      <div class="item5">Footer</div>
+      <div class="item5">
+        <h1>Footer</h1>
+        <router-view name="customFooterView" />
+      </div>
     </div>
   </div>
 </template>
