@@ -17,25 +17,34 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
+    meta: {
+      isPublic: true,
+    },
     // redirect: '/products',
     // redirect: {
     //   name: 'products',
     // },
-    redirect: (to) => {
-      console.log(to)
-      return {
-        path: '/products',
-      }
-    },
+    // redirect: (to) => {
+    //   console.log(to)
+    //   return {
+    //     path: '/products',
+    //   }
+    // },
   },
   {
     path: '/:xyz(.*)*',
     name: 'notFound',
     component: NotFound,
+    meta: {
+      isPublic: false,
+    },
   },
   {
     path: '/about/:custom?',
     name: 'about',
+    meta: {
+      isPublic: false,
+    },
     components: {
       default: AboutView,
       customMenuView: AboutMenu,
@@ -50,6 +59,9 @@ const routes = [
       default: UsersView,
       customFooterView: customFooterView,
       customMenuView: UserMenu,
+    },
+    meta: {
+      isPublic: true,
     },
   },
   {
@@ -71,8 +83,9 @@ const routes = [
     //     return false
     //   }
     // },
+
     meta: {
-      isPublic: true,
+      isPublic: false,
       layoutName: 'CustomLayout',
     },
   },
@@ -80,6 +93,9 @@ const routes = [
     path: '/products/:id',
     name: 'productsDetail',
     component: ProductsDetailed,
+    meta: {
+      isPublic: false,
+    },
     children: [
       {
         path: 'categories',
@@ -101,6 +117,7 @@ const routes = [
     name: 'information',
     component: () => import('@/views/Information.vue'),
     meta: {
+      isPublic: false,
       savedPosition: 0,
     },
   },
@@ -124,6 +141,15 @@ const router = createRouter({
   //     }, 500)
   //   })
   // },
+})
+
+router.beforeEach((to, from, next) => {
+  console.log('Each', to, from)
+  if (to.meta.isPublic) {
+    next() // ako je isPublic true, šaljemo korisnika na željenu stranicu
+  } else {
+    next({ name: 'home' }) // u suprotnom je redirektovan na početnu stranu
+  }
 })
 
 export default router
