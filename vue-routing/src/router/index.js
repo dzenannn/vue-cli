@@ -82,6 +82,21 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // console.log(to)
+    // console.log(from)
+    console.log(savedPosition) //? Saved Position može da se koristi u News App za slučaj kada se korisnik vrati nazad na article koji je čitao da ga pošalje onamo dokle je stigao sa čitanjem
+
+    return new Promise((res) => {
+      setTimeout(() => {
+        if (savedPosition) {
+          res({ left: 0, top: savedPosition.top, behavior: 'smooth' })
+        } else {
+          res({ left: 0, top: 150, behavior: 'smooth' })
+        }
+      }, 500)
+    })
+  },
 })
 
 export default router

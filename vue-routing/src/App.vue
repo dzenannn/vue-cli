@@ -34,6 +34,7 @@ export default {
             :to="{ name: 'usersDetail', params: { userId: '100' }, query: { name: 'bla' } }"
             >Korisnici</router-link
           >| -->
+          <router-link to="/products">Products</router-link>
         </nav>
       </div>
       <div class="item2">
