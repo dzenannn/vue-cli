@@ -6,7 +6,7 @@ import ProductCategories from '@/views/ProductCategories.vue'
 import ProductsDetailed from '@/views/ProductsDetailed.vue'
 import ProductsView from '@/views/ProductsView.vue'
 import UserDetailView from '@/views/UserDetailView.vue'
-import Users from '@/views/UsersView.vue'
+import UsersView from '@/views/UsersView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AboutView from '@/views/AboutView.vue'
 import AboutMenu from '@/views/AboutMenu.vue'
@@ -47,7 +47,7 @@ const routes = [
     name: 'users',
     alias: ['/peoples'], //* /peoples će prikazati /users stranicu
     components: {
-      default: Users,
+      default: UsersView,
       customFooterView: customFooterView,
       customMenuView: UserMenu,
     },
@@ -56,6 +56,25 @@ const routes = [
     path: '/products',
     name: 'products',
     component: ProductsView,
+
+    // beforeEnter: (to, from) => {
+    //   if (from.path === '/about') {
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // },
+    // beforeLeave: (to, from) => {
+    //   if (to.path === '/information') {
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // },
+    meta: {
+      isPublic: true,
+      layoutName: 'CustomLayout',
+    },
   },
   {
     path: '/products/:id',
@@ -77,26 +96,34 @@ const routes = [
     name: 'usersDetail',
     component: UserDetailView,
   },
+  {
+    path: '/information',
+    name: 'information',
+    component: () => import('@/views/Information.vue'),
+    meta: {
+      savedPosition: 0,
+    },
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    // console.log(to)
-    // console.log(from)
-    console.log(savedPosition) //? Saved Position može da se koristi u News App za slučaj kada se korisnik vrati nazad na article koji je čitao da ga pošalje onamo dokle je stigao sa čitanjem
+  // scrollBehavior(to, from, savedPosition) {
+  //   // console.log(to)
+  //   // console.log(from)
+  //   // console.log(savedPosition) //? Saved Position može da se koristi u News App za slučaj kada se korisnik vrati nazad na article koji je čitao da ga pošalje onamo dokle je stigao sa čitanjem
 
-    return new Promise((res) => {
-      setTimeout(() => {
-        if (savedPosition) {
-          res({ left: 0, top: savedPosition.top, behavior: 'smooth' })
-        } else {
-          res({ left: 0, top: 150, behavior: 'smooth' })
-        }
-      }, 500)
-    })
-  },
+  //   return new Promise((res) => {
+  //     setTimeout(() => {
+  //       if (savedPosition) {
+  //         res({ left: 0, top: savedPosition.top, behavior: 'smooth' })
+  //       } else {
+  //         res({ left: 0, top: 150, behavior: 'smooth' })
+  //       }
+  //     }, 500)
+  //   })
+  // },
 })
 
 export default router

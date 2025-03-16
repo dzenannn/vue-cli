@@ -22,7 +22,9 @@ export default {
   <button @click="goToUsersDetail">Click and go to users detail</button>
   <div>
     <h1>App.vue</h1>
-
+    <!-- <div class="" v-if="$route.meta.isPublic">
+      <router-view></router-view>
+    </div> -->
     <div class="grid-container">
       <div class="item1">
         <nav style="display: flex; gap: 8px; justify-content: center">
@@ -35,6 +37,7 @@ export default {
             >Korisnici</router-link
           >| -->
           <router-link to="/products">Products</router-link>
+          <router-link to="/information">Information</router-link>
         </nav>
       </div>
       <div class="item2">

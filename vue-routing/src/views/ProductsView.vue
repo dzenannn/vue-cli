@@ -7,6 +7,9 @@ export default {
 <template>
   <div>
     <h4>Hello I am Products Page</h4>
+    <i style="color: darkred">
+      {{ this.$route.meta.isPublic ? 'This page is public' : 'This page is not public' }}</i
+    >
     <p>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt, dolor commodi. Voluptate
       ab earum voluptatum nesciunt vitae veritatis eos totam qui ex nobis debitis corporis eligendi
