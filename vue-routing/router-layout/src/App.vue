@@ -1,20 +1,25 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import MainLayout from './layouts/MainLayout.vue'
+import AboutLayout from './layouts/AboutLayout.vue'
 </script>
 
 <template>
-  <header>
-    <div>
-      <nav style="font-size: 1.75rem">
-        <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-      </nav>
-    </div>
-  </header>
-  <div style="margin-top: 2rem; text-align: center"><router-view /></div>
+  <div style="display: flex; justify-content: center; margin-bottom: 5vh">
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+  </div>
+  <!-- <MainLayout v-if="this.$route.meta.layout === 'layout'">
+    <router-view />
+  </MainLayout>
+  <AboutLayout v-if="this.$route.meta.layout === 'aboutLayout'">
+    <router-view></router-view>
+  </AboutLayout> -->
+  <component :is="this.$route.meta.componentLayout">
+    <router-view />
+  </component>
 </template>
 
-<style scoped>
+<style>
 header {
   line-height: 1.5;
   max-height: 100vh;
