@@ -8,6 +8,7 @@ export default {
   <div class="layout">
     <header>I am a header</header>
     <div class="content">
+      <p>slot</p>
       <slot></slot>
     </div>
   </div>

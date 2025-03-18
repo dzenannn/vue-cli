@@ -8,6 +8,7 @@ export default {
   <div class="aboutLayout">
     <div class="left">Left Side</div>
     <div class="right">
+      <p>slot</p>
       <slot></slot>
     </div>
   </div>
