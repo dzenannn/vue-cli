@@ -13,17 +13,44 @@
   <button @click="check">Check</button>
   <HelloWorld @on-number-click="testFunc($event)" :msg="count" />
   <input type="text" ref="myInput" />
+  <input type="text" v-Focus />
   <button @click="refInput">Ref</button>
   <br />
   <br />
   <p ref="esnafParagraf">Esnaf</p>
   <h1>{{ computedListLength }}</h1>
+  <p>------------------------------</p>
+  <h1>Sirina: {{ windowSize.width }} || Visina: {{ windowSize.height }}</h1>
+  <h2>{{ windowSize }}</h2>
+  <p>{{ seljam.count }}</p>
+  <button @click="seljam.decrement">-</button>
 </template>
 
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import { ref, reactive, isRef, isReactive, toRef, computed, watch, watchEffect } from 'vue'
+import {
+  ref,
+  reactive,
+  isRef,
+  isReactive,
+  toRef,
+  computed,
+  watch,
+  watchEffect,
+  onMounted,
+  onUnmounted,
+} from 'vue'
+import UseWindowSize from './hooks/useWindowSize'
+import UseCounter from './hooks/useCounter'
 
+const { windowSize } = UseWindowSize()
+const seljam = UseCounter()
+onMounted(() => {
+  alert('MOUNTED')
+})
+onUnmounted(() => {
+  alert('UNMOUNTED')
+})
 const dataList = reactive({
   myList: [1],
 })
@@ -33,6 +60,10 @@ const computedListLength = computed(() => {
 })
 
 const count = ref(0)
+const vFocus = {
+  mounted: (el) => el.vFocus,
+}
+
 // watch(count, (newVal, oldVal) => {
 //   console.log(oldVal, newVal)
 // })
